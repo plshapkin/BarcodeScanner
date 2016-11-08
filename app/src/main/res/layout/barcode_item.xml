@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="com.plshapkin.barcodescanner.viewModel.BarcodeItemViewModel"/>
+	</data>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="?attr/selectableItemBackground"
+		android:onClick="@{()->viewModel.onClick()}"
+		android:padding="20dp">
+
+		<TextView
+			android:id="@+id/text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"
+			android:layout_marginEnd="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_toLeftOf="@+id/status"
+			android:layout_toStartOf="@+id/status"
+			android:text="@{viewModel.barcode.text}"
+			android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+			tools:text="http://example.com"/>
+
+		<TextView
+			android:id="@+id/status"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@+id/text"
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentRight="true"
+			android:layout_alignTop="@+id/text"
+			android:gravity="center"
+			android:text="@{String.valueOf(viewModel.barcode.statusCode)}"
+			android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+			android:visibility="@{viewModel.barcode.statusCode > 0}"
+			tools:text="404"/>
+
+	</RelativeLayout>
+</layout>
